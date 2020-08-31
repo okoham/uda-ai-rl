@@ -4,23 +4,36 @@ a README that describes how someone not familiar with this project should use yo
 
 ## Introduction
 
-For this project, you will train an agent to navigate (and collect bananas!) in a large, square world.
-
-Unity ML Agents
+This project is about training a reinforcement learning get that navigates in a square world and collects bananas.
+The given environment is modeled with Unity ML Agents. 
+The agent is similar to a Deep-Q Network as described in "Human level control through deep reinforcement learning".
 
 ## Problem Description
 
+The task consists in training an agent that navigates in a 2D world populated with bananas.
+The goal of the agent is to collect as many yellow bananas as possible, and to avoid blue
+bananas.
 
-A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.
+The environment has two modes, one providing an image of the scene (pixels), and another 
+providing ray-based perceptions of objects in front of the agent. In this project, only the 
+second environment mode iis used.
 
-The state space has 37 dimensions and contains the agent's velocity, along with ray-based perception of objects around the agent's forward direction. Given this information, the agent has to learn how to best select actions. Four discrete actions are available, corresponding to:
+The state space has 37 dimensions (floating point numbers) and contains the agent's velocity, 
+along with ray-based perception of objects around the agent's forward direction.
+
+Given this information, the agent has to learn how to best select actions. 
+Four discrete actions are available, corresponding to:
 
     0 - move forward.
     1 - move backward.
     2 - turn left.
     3 - turn right.
 
-The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
+A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided 
+for collecting a blue banana. 
+
+The task is episodic, and in order to solve the environment, the agent must get an average 
+score of +13 over 100 consecutive episodes.
 
 
 ## Getting Started
