@@ -69,3 +69,8 @@ Then, place the file in the p1_navigation/ folder in the DRLND GitHub repository
 - how to run code for training
 - how to run simulation
 
+random agent
+https://youtu.be/MQixDCK0A18
+
+trained agent
+https://youtu.be/w-poO3H8ICg
