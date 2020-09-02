@@ -1,10 +1,10 @@
-a report describing your learning algorithm. This is where you will describe the details of your implementation, along with ideas for future work.
+# Report: Navigation
 
-# Report
+by Oliver Koch
 
 ## Learning Algorithm
 
-DQN paper: https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf
+[DQN paper](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
 
 epsilon-greedy policy
 Q-Learning: 
@@ -62,9 +62,16 @@ I tried various modifications to the network architecture, which did not improve
 
 ## Plot of Rewards
 
-- show that average reward over 100 episodes
-- report number of episodes needed to solve the environment
-- gif/youtube video of trained agent
+
+After 496 episodes, an average score (over 100 episodes) of 13 was achieved. 
+Training continued until 1000 episodes were completed. 
+The final average score is 16.80.
+
+![plot of scores](scores_1.png)
+
+There are two YouTube videos, one of the [trained agent](https://youtu.be/w-poO3H8ICg), 
+one of a [random agent](https://youtu.be/MQixDCK0A18).
+The difference in performance is obvious.
 
 ## Ideas for future work
 
