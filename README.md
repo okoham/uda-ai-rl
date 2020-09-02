@@ -52,7 +52,7 @@ score of +13 over 100 consecutive episodes.
    decompress) the file.
 4. Download the files from this repository and place them into the `p1_navigation/` folder.
 
-There are four main files in this repository:
+There are five main files in this repository:
 
 1. `navigation.py` is the main file. It contains hyperparameters, the classes 
    for the neural network, the agent and the DQN learning function.

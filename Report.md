@@ -4,12 +4,27 @@ by Oliver Koch
 
 ## Learning Algorithm
 
-[DQN paper](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf)
+The learning algorithm is a simplified version of the one that Google DeepMind 
+used to train agents on Atari games, as described in the 
+[DQN paper](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf).
 
-epsilon-greedy policy
-Q-Learning: 
-state values are continuous
-nonlinear function approximation with a neural network. after x time steps, update 
+The agent learns a policy, that is, which is the action the maximized the score 
+in the long run given the current state (observations).
+
+The algorithm is variant of Temporal Difference Learning, in particular Q-Learning, 
+where the state-value function is updated during the episode, and the agent attempts 
+to approximate the optimal function value at every time step.
+
+During learning, the agent follows an epsilon-greedy policy. That is, the agent does 
+not strictly choose the best action (exploit what he has learned so far), but picks 
+a random action with a certain probability proportional to epsilon (to further 
+explore the environment). 
+Epsilon is high at the beginning (exploration), and decreases over time (shift 
+towards exploitation).
+
+The state space of the environment is continuous, and a nonlinear function 
+approximation is used to represent the state value function. 
+
 unstable
 NN: is a regression NN
 
