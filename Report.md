@@ -25,58 +25,64 @@ towards exploitation).
 The state space of the environment is continuous, and a nonlinear function 
 approximation is used to represent the state value function. 
 
-unstable
-NN: is a regression NN
+The algorithm contains two improvements. The first is called experience replay. 
+With experience replay, the algorithm does not update the parameters after each 
+time step. Instead, it continuously stores experiences (tuples of state, action, 
+reward) in a large experience buffer. After a defined number of time steps, a 
+batch of experiences is randomly sampled from the buffer, and the network weights
+are updated based on these experoences.
 
-improvement 1: experience replay. this makes it a supervised laerning problem
+The second improvement is called fixed targets, meaning that the algorithm keeps
+track of two sets of weights. One set (local weights) is used to select the 
+nect action, the other set (target weights) is used as a target when updating 
+the local weights. This reduces the learing of the weights to a supervised ML 
+problem.
+The new target is then set as a linear interpolation of new 
+local and old target weights.
 
-improvement 2: fixed targets. dqn paper: change target after xx episodes. here: weighted average of current and previous target
-soft update is used for target weights \theta_{target} <- \tau \theta_{local} + (1 - \tau) \theta_{target}
-that is a linear interpolation between local and target weits
-
-- algorithm
 
 #### Chosen hyperparameters
 
 | Parameter | Value | Remark |
 | --- | --- | --- |
-| Minibatch size |
-| Replay memory size |
-| agent history length |
-| target network update frequency |
-| tau |
-| discount factor |
-| action repeat |
-| update frequency | 
-| optimizer | Adam |
+| Minibatch size | 64 | number of training cases over which weight update is carried out. |
+| Replay memory size | 100000 | number of most recent experiences. Minibatch is sampled from this buffer. |
+| target network update frequency | 4 | weights are updated every 4th time step |
+| tau | 0.001 | Soft update of target weights $\theta_{target} = \theta_{target} + \tau \theta_{local}$
+| discount factor | 0.99 | Discount factor gamma used in Q learning update |
+| optimizer | Adam | using default parameters for $\beta$ and $\beta^2$ |
 | learning rate | 0.00025 | The learning rate used by the optimizer. Same value as in DQN paper. |
-| adam parameter 1 |
-| adam parameter 2 |
-| exploration decay | exponential
-| initial exploration | 
-| final exploration |
-| exploration decay rate |
-| replay start size |
-| no-op max |
-| max length of episode |
+| initial exploration | 1.0 | initial value of $\epsilon$ in epsilon-greedy policy | 
+| final exploration | 0.01 | final value of $\epsilon$ in epsilon-greedy policy |
+| exploration decay rate | 0.995 | $\epsilon$ is decreased by this factor every episode |
+
+Most of the hyperparameters are idential to the ones used in a previous mini.project.
+I varied some of the hyperparameters. Some variations had no effect, others decreased the 
+performance. Experients carried out:
+
+* learning rate: 0.0025, 0.005, 0.01
+* tau: 0.01, 0.001
+* epsilon_final: 0.1, 0.001
+* epsilon_decay: 0.995, 0.997, 0.999
 
 
-
-
-#### NN architecture
+#### Neural network architecture
 
 The neural network has three layers, two hidden layers and one output layer.
+Both hidden layers have a width of 64 neurons. 
+ReLu is used as activation function 
 
     ReLu(FC(37, 64)) -> ReLu(FC(64, 64)) -> FC(64, 4)
 
-I tried various modifications to the network architecture, which did not improve the result:
+I tried various modifications to the network architecture, which did not 
+improve the result:
 
 - making hidden layers wider (128, 256 neurons)
 - making the network deeper by adding a third hidden layer
 - using SeLu instead of ReLu as a nonlinear activation function
 
-## Plot of Rewards
 
+## Plot of Rewards
 
 After 496 episodes, an average score (over 100 episodes) of 13 was achieved. 
 Training continued until 1000 episodes were completed. 
@@ -88,9 +94,10 @@ There are two YouTube videos, one of the [trained agent](https://youtu.be/w-poO3
 one of a [random agent](https://youtu.be/MQixDCK0A18).
 The difference in performance is obvious.
 
+
 ## Ideas for future work
 
-- concrete ideas for improving the agent's performance
+
 - double dqn, dueling dqn, proritized experience replay
 - sequence of states
 
