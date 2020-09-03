@@ -112,3 +112,7 @@ of the DQN paper improved this by defining a sequence of four successive frames
 as the state. A similar approach could be tried here: concatenating a sequence of
 observations and considering zhis sequence as the state.
 
+On the neural network side, a more systematic study of network architecture could be
+carried out, in particular trying out Batch Normalisation or Dropout, together with a 
+more complex network.
+
