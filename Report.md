@@ -8,11 +8,11 @@ The learning algorithm is a simplified version of the one that Google DeepMind
 used to train agents on Atari games, as described in the 
 [DQN paper](https://storage.googleapis.com/deepmind-media/dqn/DQNNaturePaper.pdf).
 
-The agent learns a policy, that is, which is the action the maximized the score 
+The agent learns a policy, that is, which is the best action to maximize the score 
 in the long run given the current state (observations).
 
 The algorithm is variant of Temporal Difference Learning, in particular Q-Learning, 
-where the state-value function is updated during the episode, and the agent attempts 
+where the action-value function is updated during the episode, and the agent attempts 
 to approximate the optimal function value at every time step.
 
 During learning, the agent follows an epsilon-greedy policy. That is, the agent does 
@@ -97,8 +97,18 @@ The difference in performance is obvious.
 
 ## Ideas for future work
 
+To improve the performance, the following modifications could be tried:
 
-- double dqn, dueling dqn, proritized experience replay
-- sequence of states
+- [Double DQN](https://arxiv.org/abs/1509.06461), 
+- [Dueling DQN](https://arxiv.org/abs/1511.06581), 
+- [Prioritized experience replay](https://arxiv.org/abs/1511.05952)
+- or a combination of these with the already implemented fixed targets and 
+  experience replay.
 
-- give him a sequence of actions, as in the dqn paper
+The agent does not have access to the full state of the world, he has a limited field 
+of view. This means that a basic assumption of RL (Markov decision process, 
+current state represents full state of world) is violated. The authors
+of the DQN paper improved this by defining a sequence of four successive frames 
+as the state. A similar approach could be tried here: concatenating a sequence of
+observations and considering zhis sequence as the state.
+
